@@ -1,0 +1,46 @@
+2019-07-01 17:31:03,603  * Debugger is active!
+22019-07-01 17:32:36,462  * Restarting with stat
+29
+2019-07-01 17:31:03,627  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2019-07-01 17:31:05,422 Exception on /employee/ [POST]
+Traceback (most recent call last):
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\flask\app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\flask\app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\flask_restplus\api.py", line 325, in wrapper
+    resp = resource(*args, **kwargs)
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\flask\views.py", line 88, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\flask_restplus\resource.py", line 44, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\apis\Employees.py", line 71, in post
+    email=json_data['email']
+  File "<string>", line 2, in __init__
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\sqlalchemy\orm\instrumentation.py", line 376, in _new_state_if_none
+    state = self._state_constructor(instance, self)
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\sqlalchemy\util\langhelpers.py", line 855, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\sqlalchemy\orm\instrumentation.py", line 202, in _state_constructor
+    self.dispatch.first_init(self, self.class_)
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\sqlalchemy\event\attr.py", line 297, in __call__
+    fn(*args, **kw)
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\sqlalchemy\orm\mapper.py", line 3341, in _event_on_first_init
+    configure_mappers()
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\sqlalchemy\orm\mapper.py", line 3229, in configure_mappers
+    mapper._post_configure_properties()
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\sqlalchemy\orm\mapper.py", line 1947, in _post_configure_properties
+    prop.init()
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\sqlalchemy\orm\interfaces.py", line 196, in init
+    self.do_init()
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\sqlalchemy\orm\relationships.py", line 1860, in do_init
+    self._process_dependent_arguments()
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\sqlalchemy\orm\relationships.py", line 1922, in _process_dependent_arguments
+    self.target = self.entity.persist_selectable
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\sqlalchemy\util\langhelpers.py", line 855, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "C:\Users\z003sjjk\PycharmProjects\EmployeeUsingNameSpace\venv\lib\site-packages\sqlalchemy\orm\relationships.py", line 1845, in entity
+    % (self.key, type(argument))
+sqlalchemy.exc.ArgumentError: relationship 'parent' expects a class or a mapper argument (received: <class 'sqlalchemy.sql.schema.Table'>)
+2019-07-01 17:31:05,433 127.0.0.1 - - [01/Jul/2019 17:31:05] "POST /employee/ HTTP/1.1" 500 -
+2019-07-01 17:32:36,388  * Detected change in 'C:\\Users\\z003sjjk\\PycharmProjects\\EmployeeUsingNameSpace\\app.py', reloading
