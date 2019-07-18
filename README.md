@@ -5,7 +5,9 @@ a lot of code is yet to refactor.
 to start db ->
 
 python migrate.py db init
+
 python migrate.py db migrate
+
 python migrate.py db upgrade
 
 and you ready to go
