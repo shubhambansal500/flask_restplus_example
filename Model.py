@@ -8,17 +8,20 @@ db = SQLAlchemy()
 
 class Company(db.Model):
     __tablename__ = 'company'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(150), unique=True, nullable=False)
+    M_COMPANY_ID = db.Column(db.Integer, primary_key=True)
+    NAME = db.Column(db.String(150), unique=True, nullable=False)
     employees = db.relationship('Employee', backref='employee_name')
 
-    def __init__(self, name):
-        self.name = name
+    # def __init__(self, NAME):
+    #     self.NAME = NAME
+    def __init__(self, **kwargs):
+        kwargs.pop('M_COMPANY_ID')
+        self.__dict__.update(kwargs)
 
 
 class CompanySchema(ma.Schema):
-    id = fields.Integer()
-    name = fields.String(required=True)
+    M_COMPANY_ID = fields.Integer()
+    NAME = fields.String(required=True)
     #id = fields.Relationship(
      #   self_url="/company/{company_id}",
       #  self_url_kwargs={"company_id": "<id>"},
@@ -35,22 +38,25 @@ class CompanySchema(ma.Schema):
 
 class Employee(db.Model):
     __tablename__ = 'employee'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(250), nullable=False)
-    email = db.Column(db.String(250), nullable=False)
-    company_id = db.Column(db.Integer, db.ForeignKey('company.id'))
+    M_EMPLOYEE_ID = db.Column(db.Integer, primary_key=True)
+    NAME = db.Column(db.String(250), nullable=False)
+    EMAIL = db.Column(db.String(250), nullable=False)
+    M_COMPANY_ID = db.Column(db.Integer, db.ForeignKey('company.M_COMPANY_ID'))
 
-    def __init__(self, name, email, company_id):
-        self.name = name
-        self.email = email
-        self.company_id = company_id
+    # def __init__(self, NAME, EMAIL, M_COMPANY_ID):
+    #     self.NAME = NAME
+    #     self.EMAIL = EMAIL
+    #     self.M_COMPANY_ID = M_COMPANY_ID
+
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
 
 
 class EmployeeSchema(ma.Schema):
-    id = fields.Integer()
-    name = fields.String(required=True)
-    email = fields.String()
-    company_id = fields.Integer()
+    M_EMPLOYEE_ID = fields.Integer()
+    NAME = fields.String(required=True)
+    EMAIL = fields.String()
+    M_COMPANY_ID = fields.Integer()
     #email = fields.Relationship(
         #self_url="/employee/{employee_id}/relationships/employee_id",
         #self_url_kwargs={"employee_id": "<id>"},
